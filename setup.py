@@ -8,19 +8,19 @@ here = os.path.abspath(os.path.dirname(__file__))
 def read(path):
     return codecs.open(os.path.join(here, path), 'r', 'utf-8').read()
 
-version_file = read('canvas_docker_test/__init__.py')
+version_file = read('python_docker_test/__init__.py')
 version = re.search(r"^__version__ = ['\"]([^'\"]*)['\"]", version_file, re.M).group(1)
 
 setup(
-    name='canvas-docker-test',
+    name='python-docker-test',
     version=version,
-    description='unittest.TestCase mixin for executing integration tests against canvas-docker',
+    description='A unittest.TestCase mixin for executing integration/acceptance tests against containerized services',
     author='Jay Luker',
     author_email='jay_luker@harvard.edu',
-    url='https://github.com/harvard-dce/canvas-docker-test',
+    url='https://github.com/harvard-dce/python-docker-test',
     packages=find_packages(),
-    install_requires=[''],
+    install_requires=['docker-py', 'requests'],
     license='MIT License',
-    keywords='canvas lms lti',
+    keywords='docker integration acceptance testing',
     zip_safe=True
 )

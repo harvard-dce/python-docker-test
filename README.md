@@ -1,10 +1,12 @@
-## canvas-docker-test
+## python-docker-test
 
-A unittest.TestCase mixin for executing integration/acceptance tests against a Docker-ized Canvas instance.
+A unittest.TestCase mixin for executing integration/acceptance tests against 
+containerized services.
 
 ### Running your app server
 
-In order for your app to visible from the containerized Canvas instance you must bind the app server to Docker's gateway ip (default: 172.17.42.1).
+In order for your app to visible from the container you must bind the app server
+to it's gateway ip (default: 172.17.42.1).
 
 In django:
 
