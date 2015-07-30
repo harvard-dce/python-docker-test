@@ -88,7 +88,7 @@ class PythonDockerTestMixin(object):
     @classmethod
     def setUpClass(cls):
         """
-        Creates the client connection to the Docker server. Checks that image
+        Checks that image
         defined in cls.CONTAINER_IMAGE is present and pulls if not. Starts
         the container in a separate thread to allow for better cleanup if
         exceptions occur during test setup.
