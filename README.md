@@ -10,7 +10,7 @@ storing the container's `inspect` response data as part of the TestCase instance
 container. There are other solutions/packages for that already.
 
 I wanted a mechanism by which I could automate some functional tests involving
-a python LTI app (Django) and an external service, Instructure's Canvas LMS. LTI
+a python [LTI](http://developers.imsglobal.org/) app (Django) and an external service, Instructure's [Canvas LMS](https://github.com/instructure/canvas-lms). LTI
 is a standard that allows external apps to be embedded within an LMS's website by
 means of an iframe. This makes it very difficult to do functional tests in
 isolation. So I created a docker image for spinning up a dev instance of Canvas
@@ -28,7 +28,7 @@ To create a functional test that relies on a docker container you'll need to
 include a few additions to to your TestCase subclass:
 
 1. Insert `PythonDockerTestMixin` at the beginning of your TestCase inheiritance
-chain. See here for why the position is important.
+chain. See [here](http://nedbatchelder.com/blog/201210/multiple_inheritance_is_hard.html) for why the position is important.
 
 1. Define at least the `CONTAINER_IMAGE` class attribute to specify the docker
 image you wish to run. If the specified image is not found in your local docker
@@ -41,12 +41,12 @@ your container is ready to run whatever your tests are exercising. The method
 should simply return if everything is all set, otherwise raise a 
 `python_docker_test.ContainerNotReady`. The method will be called with a 
 positional argument of a dict structure containing the result of docker-py's 
-`inspect_container`, so you can know things like the container's ip and gateway 
+[`inspect_container`](http://docker-py.readthedocs.org/en/latest/api/#inspect_container), so you can know things like the container's ip and gateway 
 address. 
 
 1. Optionally set the `CONTAINER_READY_TRIES` and `CONTAINER_READY_SLEEP` class
 attributes to control how many times your `container_ready_callback` method is
-called and how long the thread will sleep between calls.
+called before giving up, and how long the thread will sleep between calls.
 
 ### Example
 
@@ -96,7 +96,7 @@ container.
 ### Automating the app server
 
 "What if I want to automate starting the app too?" Well, in the case of Django
-you can use `LiveServerTestCase`. The trick there is overriding the default
+you can use [`LiveServerTestCase`](https://docs.djangoproject.com/en/1.8/topics/testing/tools/#liveservertestcase). The trick there is overriding the default
 ip:port the server is bound to. In my case I set
 `os.environ['DJANGO_LIVE_TEST_SERVER_ADDRESS']` in my ready callback method
 based on info in the container inspection data.
