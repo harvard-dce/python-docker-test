@@ -104,6 +104,7 @@ based on info in the container inspection data.
 ## Contributors
 
 * Jay Luker \<<jay_luker@harvard.edu>\> [@lbjay](http://github.com/lbjay)
+* Matthieu Chevrier [@treemo](http://github.com/treemo)
 
 ## License
 
