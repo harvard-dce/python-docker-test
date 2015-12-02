@@ -109,10 +109,11 @@ class PythonDockerTestMixin(object):
         # wait for the container startup to complete
         cls.container_start_thread.is_ready.wait()
         if cls.container_start_thread.error:
+            exc_info = cls.container_start_thread.exc_info
             # Clean up behind ourselves, since tearDownClass won't get called in
             # case of errors.
             cls._tearDownClassInternal()
-            raise cls.container_start_thread.exc_info[1], None, cls.container_start_thread.exc_info[2]
+            raise exc_info[1], None, exc_info[2]
 
         cls.container_data = cls.container_start_thread.container_data
 
